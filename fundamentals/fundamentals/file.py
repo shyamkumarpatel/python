@@ -1,29 +1,33 @@
-num1 = 42 #Variable declaration
-num2 = 2.3 #Variable declaration
-boolean = True #Variable declaration
-string = 'Hello World' #Variable declaration
-pizza_toppings = ['Pepperoni', 'Sausage', 'Jalepenos', 'Cheese', 'Olives'] #Variable declaration
-person = {'name': 'John', 'location': 'Salt Lake', 'age': 37, 'is_balding': False} #Variable declaration
-fruit = ('blueberry', 'strawberry', 'banana') #Variable declaration
-print(type(fruit))  #log statement
-print(pizza_toppings[1]) #log statement
-pizza_toppings.append('Mushrooms')
-print(person['name']) #log statement
-person['name'] = 'George'
-person['eye_color'] = 'blue'
-print(fruit[2]) #log statement
+#Variable declaration
+num1 = 42 
+num2 = 2.3 
+boolean = True 
+string = 'Hello World'
+pizza_toppings = ['Pepperoni', 'Sausage', 'Jalepenos', 'Cheese', 'Olives']
+person = {'name': 'John', 'location': 'Salt Lake', 'age': 37, 'is_balding': False}
+fruit = ('blueberry', 'strawberry', 'banana')
 
+ #log statement
+print(type(fruit)) 
+print(pizza_toppings[1]) 
+pizza_toppings.append('Mushrooms') #adding mushrooms to the toppings list
+print(person['name']) 
+person['name'] = 'George' # changing the name from John
+person['eye_color'] = 'blue' # setting the eye_color
+print(fruit[2]) 
+
+# conditionals
 if num1 > 45:
     print("It's greater")
 else:
     print("It's lower")
 
 if len(string) < 5:
-    print("It's a short word!") #log statement
+    print("It's a short word!") 
 elif len(string) > 15:
-    print("It's a long word!") #log statement
+    print("It's a long word!") 
 else:
-    print("Just right!") #log statement
+    print("Just right!") 
 
 for x in range(5):
     print(x)
@@ -36,35 +40,35 @@ while(x < 5):
     print(x)
     x += 1
 
-pizza_toppings.pop()
-pizza_toppings.pop(1)
+pizza_toppings.pop() # remove the last item from the list (Mushroom)
+pizza_toppings.pop(1) # remove the second item from the list (Sausage)
 
-print(person) #log statement
-person.pop('eye_color')
-print(person) #log statement
+print(person) 
+person.pop('eye_color')  # removing the eye_color key-value from dictionary
+print(person) 
 
 for topping in pizza_toppings:
     if topping == 'Pepperoni':
         continue
-    print('After 1st if statement') #log statement
+    print('After 1st if statement')  
     if topping == 'Olives':
         break
 
 def print_hello_ten_times():
     for num in range(10):
-        print('Hello') #log statement
+        print('Hello') 
 
 print_hello_ten_times()
 
 def print_hello_x_times(x):
     for num in range(x):
-        print('Hello') #log statement
+        print('Hello')  
 
 print_hello_x_times(4)
 
 def print_hello_x_or_ten_times(x = 10):
     for num in range(x):
-        print('Hello') #log statement
+        print('Hello') 
 
 print_hello_x_or_ten_times()
 print_hello_x_or_ten_times(4)
