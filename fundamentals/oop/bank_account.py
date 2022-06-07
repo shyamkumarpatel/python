@@ -27,9 +27,17 @@ class BankAccount:
             self.balance += self.balance*(self.int_rate/100)
         return self
 
+    @classmethod
+    def display_all_balance(cls):
+        for account in cls.list_All_Back_Accounts:
+            print('Balance: $'+str(account.balance))
+            
+
 account1 = BankAccount(1, 0)
 account2 = BankAccount(2, 0)
 
 account1.deposit(100).deposit(200).deposit(300).display_account_info()
 
 account2.deposit(200).deposit(300).withdraw(.12).withdraw(5.89).withdraw(6.98).withdraw(145.5).yield_interest().display_account_info()
+
+BankAccount.display_all_balance()
