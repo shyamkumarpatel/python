@@ -7,7 +7,7 @@ pizza_toppings = ['Pepperoni', 'Sausage', 'Jalepenos', 'Cheese', 'Olives']
 person = {'name': 'John', 'location': 'Salt Lake', 'age': 37, 'is_balding': False}
 fruit = ('blueberry', 'strawberry', 'banana')
 
- #log statement
+#log statement
 print(type(fruit)) 
 print(pizza_toppings[1]) 
 pizza_toppings.append('Mushrooms') #adding mushrooms to the toppings list
