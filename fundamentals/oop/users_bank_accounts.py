@@ -18,8 +18,8 @@ class BankAccount:
             self.balance -= amount
         return self
 
-    def display_account_info(self,accountName):
-        print('Account:',accountName, ' --> Balance: $'+str(self.balance))
+    def display_account_info(self,accountName, name):
+        print(f'User {name} \tAccount: {accountName}', ' --> Balance: $'+str(self.balance))
         return self
 
     def yield_interest(self):
@@ -48,7 +48,7 @@ class User:
         return self
     
     def display_user_balance(self, accountName):
-        self.account[accountName].display_account_info(accountName)
+        self.account[accountName].display_account_info(accountName, self.name)
         return self
 
     def transfer_money(self, accountName, other_user, otherAccountName, amount):
@@ -60,7 +60,15 @@ class User:
 alfredo = User('Alfredo')
 alfredo.make_deposit(100,'Checking').make_deposit(200,'Saving').make_deposit(300,'Checking').display_user_balance('Saving').make_withdrawal(25,'Checking').display_user_balance('Checking')
 
+print('------------------------')
 alfredo.transfer_money('Checking', alfredo, 'Saving',150)
 alfredo.display_user_balance('Checking').display_user_balance('Saving')
+print('------------------------')
 
-BankAccount.display_all_balance()
+winter = User('Winter')
+winter.display_user_balance('Checking').display_user_balance('Saving')
+print('------------------------')
+alfredo.transfer_money('Saving', winter, 'Checking',150)
+
+alfredo.display_user_balance('Checking').display_user_balance('Saving')
+winter.display_user_balance('Checking').display_user_balance('Saving')
