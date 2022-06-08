@@ -18,8 +18,8 @@ class BankAccount:
             self.balance -= amount
         return self
 
-    def display_account_info(self):
-        print('Balance: $'+str(self.balance))
+    def display_account_info(self,accountName):
+        print('Account:',accountName, ' --> Balance: $'+str(self.balance))
         return self
 
     def yield_interest(self):
@@ -36,26 +36,31 @@ class User:
     list_users = []
     def __init__ (self, name):
         self.name = name
-        self.account = BankAccount(0, 0)
+        self.account = {'Checking':BankAccount(0, 0), 'Saving':BankAccount(1,0)}
         User.list_users.append(self)
 
-    def make_deposit(self, amount):
-        self.account.deposit(amount)
+    def make_deposit(self, amount, accountName):
+        self.account[accountName].deposit(amount)
         return self
 
-    def make_withdrawal(self, amount):
-        self.account.withdraw(amount)
+    def make_withdrawal(self, amount, accountName):
+        self.account[accountName].withdraw(amount)
         return self
     
-    def display_user_balance(self):
-        self.account.display_account_info()
+    def display_user_balance(self, accountName):
+        self.account[accountName].display_account_info(accountName)
         return self
 
-    def transfer_money(self, other_user, amount):
-        self.make_withdrawal(amount)
-        other_user.make_deposit(amount)
+    def transfer_money(self, accountName, other_user, otherAccountName, amount):
+        self.make_withdrawal(amount,accountName)
+        other_user.make_deposit(amount,otherAccountName)
 
 
 
 alfredo = User('Alfredo')
-alfredo.make_deposit(100).make_deposit(200).make_deposit(300).display_user_balance().make_withdrawal(50).display_user_balance()
+alfredo.make_deposit(100,'Checking').make_deposit(200,'Saving').make_deposit(300,'Checking').display_user_balance('Saving').make_withdrawal(25,'Checking').display_user_balance('Checking')
+
+alfredo.transfer_money('Checking', alfredo, 'Saving',150)
+alfredo.display_user_balance('Checking').display_user_balance('Saving')
+
+BankAccount.display_all_balance()
