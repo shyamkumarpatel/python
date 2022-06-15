@@ -7,10 +7,20 @@ app.secret_key = 'keep it secret, keep it safe'
 def index():
     return render_template("index.html")
 
-@app.route('/result', methods = ["POST"])
+@app.route('/process', methods = ["POST"])
+def process():
+    if "user_info" in session:
+        session.clear()
+        session["user_info"] = request.form
+    else:
+        session["user_info"] = request.form
+        
+    return redirect("/result")
+
+@app.route('/result')
 def result():
     info_dic = {}
-    for k,v in request.form.items():
+    for k,v in session["user_info"].items():
         if k=="name" and v:
             info_dic["Name: "] =v
         elif k=="Dojo_Location" and v:
