@@ -11,9 +11,8 @@ def index():
 def process():
     if "user_info" in session:
         session.clear()
-        session["user_info"] = request.form
-    else:
-        session["user_info"] = request.form
+    
+    session["user_info"] = request.form
         
     return redirect("/result")
 

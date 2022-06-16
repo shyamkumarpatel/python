@@ -1,8 +1,7 @@
-from flask import Flask, render_template, redirect, request
-# import the class from friend.py
-from Users import User
+from flask_app import app
+from flask import render_template,redirect,request,session,flash
+from flask_app.model.User import User
 
-app = Flask(__name__)
 @app.route("/")
 def index():
 	return redirect("/users")
@@ -45,6 +44,3 @@ def deleteUser(id):
 	data={'id':id}
 	User.deleteUser(data)
 	return redirect("/users")
-
-if __name__ == "__main__":
-    app.run(debug=True)
