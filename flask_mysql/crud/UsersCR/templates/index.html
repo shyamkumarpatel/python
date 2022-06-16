@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Users</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" 
+    rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+</head>
+<body>
+    <div class="container">
+        <h1>All User:</h1>
+        <table class="table">
+            <thead  class="table-striped">      
+                <tr>
+                    <th scope="col">ID</th>
+                    <th scope="col">Full Name</th>
+                    <th scope="col">Email</th>
+                    <th scope="col">Created At</th>
+                    <th scope="col">Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for user in all_users %}
+                <tr>
+                    <td scope="row"> {{user.id}}</td>
+                    <td>{{user.first_name}} {{user.last_name}}</td>
+                    <td>{{user.email}}</td>
+                    <td>{{user.created_at}}</td>
+                    <td>-- placeholder --</a></td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        <a href="\new" class="btn btn-primary btn-lg">Add a user</a>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" 
+    integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
+</body>
+</html>
