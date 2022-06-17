@@ -8,35 +8,34 @@ def index():
 
 @app.route("/users")
 def users():
-	Users = User.get_all()
-	#print("----------------Getting Users----------------------\n",Users,"\n------------------------------------------------------")
-	return render_template("index.html", all_users = Users)
+    Users = User.get_all()
+    return render_template("index.html", all_users = Users)
 
 @app.route("/new")
 def add_user():
-	return render_template("addUser.html")
+    return render_template("addUser.html")
 
 @app.route("/new", methods=["POST"])
 def add_new_user():
-	last_id_inserted = User.addNewUser(request.form)
-	return redirect(f"/users/{last_id_inserted}")
+    last_id_inserted = User.addNewUser(request.form)
+    return redirect(f"/users/{last_id_inserted}")
 
 @app.route("/users/<int:id>")
 def getUserInfo(id):
-	data={'id':id}
-	user_info = User.getUser(data)
-	return render_template("viewUser.html", user = user_info[0])
+    data={'id':id}
+    user_info = User.getUser(data)
+    return render_template("viewUser.html", user = user_info)
 
 
 @app.route("/users/<int:id>/edit")
 def editUser(id):
 	data={'id':id}
 	user_info = User.getUser(data)
-	return render_template("editUser.html",  user = user_info[0])
+	return render_template("editUser.html",  user = user_info)
 
 @app.route("/users/<int:id>/edit", methods=["POST"])
 def editUserInfo(id):
-	user_info = User.updateUser(request.form)
+	User.updateUser(request.form)
 	return redirect(f"/users/{id}")
 
 @app.route("/users/<int:id>/delete")

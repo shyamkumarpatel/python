@@ -33,7 +33,8 @@ class User:
         query = "select id, first_name, last_name, email, created_at, updated_at FROM users "
         query += "WHERE id = %(id)s ;"
         results = connectToMySQL('users_schema').query_db(query, data)
-        return results
+        print(results)
+        return cls(results[0])
 
     
     @classmethod
