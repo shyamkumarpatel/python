@@ -14,9 +14,9 @@ def getdojos():
 @app.route("/dojos/<int:id>")
 def getNinjaInfo(id):
     data={'id':id}
-    dojo_name = Dojo.getDojo(data)
+    #dojo_name = Dojo.getDojo(data)
     ninja_info = Dojo.getDojoNinjas(data)
-    return render_template("dojo_show.html", Dojo_Ninjas = ninja_info, dojo_name = dojo_name.name)
+    return render_template("dojo_show.html", Dojo_Ninjas = ninja_info)
 
 @app.route("/newdojo", methods=["POST"])
 def add_new_dojo():

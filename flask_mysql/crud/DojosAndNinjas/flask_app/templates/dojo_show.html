@@ -10,7 +10,7 @@
 </head>
 <body>
     <div class="container-sm mt-3" style="width: 540px;">
-        <h1>{{dojo_name}} Ninjas</h1>
+        <h1>{{Dojo_Ninjas.name}} Ninjas</h1>
         <table class="table table-striped">
             <thead>
                 <tr>
@@ -20,7 +20,7 @@
                 </tr>
             </thead>
             <tbody>
-                {% for ninja in Dojo_Ninjas %}
+                {% for ninja in Dojo_Ninjas.ninjas %}
                     <tr>
                         <th scope="row">{{ninja.first_name}}</th>
                         <td>{{ninja.last_name}}</td>
