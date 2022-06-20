@@ -19,15 +19,3 @@ def add_new_dojo():
     last_id_inserted = User.addNewUser(request.form)
     print(last_id_inserted)
     return redirect("/friendships")
-
-# @app.route("/dojos/<int:id>")
-# def getNinjaInfo(id):
-#     data={'id':id}
-#     #dojo_name = Dojo.getDojo(data)
-#     ninja_info = Dojo.getDojoNinjas(data)
-#     return render_template("dojo_show.html", Dojo_Ninjas = ninja_info)
-
-# @app.route("/newdojo", methods=["POST"])
-# def add_new_dojo():
-#     last_id_inserted = Dojo.addNewDojo(request.form)
-#     return redirect("/dojos")
