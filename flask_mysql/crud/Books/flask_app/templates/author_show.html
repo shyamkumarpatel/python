@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Author Show</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" 
+    rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+</head>
+<body>
+    <div class="container d-flex mt-4">
+        <div class="card w-50 m-1">
+            <h1 class="card-header">{{Author_Info.name}}'s favorites</h1>
+            <div class="card-body">
+                <table class="table">
+                    <thead  class="text-warning table-dark">      
+                        <tr>
+                            <th scope="col">Title</th>
+                            <th scope="col"># of Pages</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for book in books %}
+                            <tr>
+                                <td scope="row">{{book.title}}</td>
+                                <td>{{book.num_of_pages}}</td>
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+            <div class="card-body">
+                <a href="/authors" class="btn btn-lg btn-primary mt-4">Go back to home</a>
+            </div>
+        </div>
+        <div class="col m-1">
+            <div class="card">
+                <h1 class="card-header">Add Author's Favorite</h1>
+                <div class="card-body">
+                    <form action='\newauthor' method='post'  class="mt-4">
+                        <div class="mb-3 row">
+                            <label class="col-sm-3 col-form-label">Book: </label>
+                            <div class="col-sm">
+                                <select class="form-select"  name="book_id">
+                                    {% for book in books %}
+                                        <option value="{{book.id}}">{{book.title}}</option>
+                                    {% endfor %}
+                                </select>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <label class="col-sm-3 col-form-label"></label>
+                            <div class="col-sm">
+                                <button class="btn btn-success btn-lg btn-block mt-2" type="submit">Add</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" 
+    integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
+</body>
+</html>

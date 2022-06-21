@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Authors</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" 
+    rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+</head>
+<body>
+    <div class="container d-flex mt-4">
+        <div class="card mx-4">
+            <h1 class="card-header">New Author</h1>
+            <div class="card-body">
+                <form action='\newauthor' method='post'  class="mt-4">
+                    <div class="mb-3 row">
+                        <label class="col-sm-4 col-form-label">Name: </label>
+                        <div class="col-sm">
+                            <input type="text" class="form-control" name="name" placeholder="" value="" required>
+                        </div>
+                    </div>
+                    <div class="mb-3 row">
+                        <label class="col-sm-4 col-form-label"><!--blank lable for button alignment--></label>
+                        <div class="col-sm">
+                            <button class="btn btn-success btn-lg btn-block" type="submit">Create</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+        <div class="card w-50">
+            <h1 class="card-header">All Authors</h1>
+            <div class="card-body">
+                {% for author in all_Authors %}
+                    <p class="card-text"> <a href="authors/{{author.id}}">{{author.name}}</a></p>
+                {% endfor %}
+            </div>
+            <div class="card-body">
+                <a href="\books" class="btn btn-primary btn-lg">Add Book</a>
+            </div>
+        </div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" 
+    integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
+</body>
+</html>
