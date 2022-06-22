@@ -34,9 +34,10 @@ class User:
 
     @staticmethod
     def validate_registration(data):
-        #print("validate_registration(data)", data)
-        #print(len(data['password']))
         EMAIL_REGEX = re.compile(r'^[a-zA-Z0-9.+_-]+@[a-zA-Z0-9._-]+\.[a-zA-Z]+$')
+        PASSWORD_REGEX = re.compile(r'^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{6,}$')
+        #print("validate_registration(data)", data)
+        print("---Data-----::: ",data)
         isValid = True
         if data['first_name'] == "":
             flash("You must provide your first name.", "error_register_first_name" )
@@ -50,14 +51,22 @@ class User:
         if not EMAIL_REGEX.match(data['email']):
             flash("Please provide a valid email.", "error_register_email")
             isValid = False
+        elif User.getAllUsers(data):
+            flash("This email is taken.", "error_register_email")
+            isValid = False
         if data['password'] == "":
             flash("You must provide a password.", "error_register_password")
             isValid = False
+        if not PASSWORD_REGEX.match(data['password']):
+            flash("Please provide a password with minimum of six characters, at least one uppercase letter, one lowercase letter and one number:", "error_register_password")
+            isValid = False
         if data['Confirm_password'] != data['password']:
             flash("Your password confirmation doesn't match.", "error_register_password_confirmation")
-        if len(data['password']) < 4:
-            flash("Password must be at least 4 characters long.", "error_register_password")
             isValid = False
+        if len(data['password']) < 5:
+            flash("Password must be at least 6 characters long.", "error_register_password")
+            isValid = False
+
         return isValid
 
     @classmethod
@@ -71,10 +80,21 @@ class User:
     @classmethod
     def getUser(cls, data):
         query = "select * FROM users "
-        query += "WHERE email=%(email)s AND password=%(password)s;"
+        query += "WHERE email=%(email)s;"
         results = connectToMySQL('users_schema').query_db(query, data)
         print(results)
         if len(results) > 0:
             return cls(results[0])
         else:
             return None
+
+    @classmethod
+    def getAllUsers(cls, data):
+        print("data from getAllUsers query ----", data)
+        query = "select * FROM users where email = %(email)s"
+        results = connectToMySQL('users_schema').query_db(query, data)
+        print("results from getAllUsers query ----", results)
+        if results:
+            return True
+        else:
+            return False

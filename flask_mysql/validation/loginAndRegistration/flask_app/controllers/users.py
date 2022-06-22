@@ -6,15 +6,9 @@ from flask_bcrypt import Bcrypt
 bcrypt = Bcrypt(app)
 
 @app.route("/")
-def index():
-    return redirect("/login")
-
 @app.route("/login")
 def users():
-    if User.validate_session() == True:
-        return redirect("/dashboard")
-    else:
-        return render_template("index.html")
+    return render_template("index.html")
 
 
 @app.route("/login", methods=["POST"])
@@ -22,17 +16,20 @@ def login_user():
     if User.validate_login(request.form) == False:
         return redirect("/login")
     else:
-        # create the hash
-        pw_hash = bcrypt.generate_password_hash(request.form['password'])
-        print(pw_hash)
+        print("Form Data:", request.form)
         data = {
             "email" : request.form['email'],
-            "password" : pw_hash
         }
+        print("Data:", data)
         result = User.getUser(data)
+        print("result:", result)
         
     if result == None:
-        flash("Wrong credentials", "error_login")
+        flash("Wrong credentials: Invalid email", "error_login")
+        return redirect("/login")
+
+    if not bcrypt.check_password_hash(result.password, request.form["password"]): 
+        flash("Wrong credentials: Invalid password", "error_login")
         return redirect("/login")
     else:
         session['first_name'] = result.first_name
