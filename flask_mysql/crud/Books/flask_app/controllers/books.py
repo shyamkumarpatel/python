@@ -2,6 +2,7 @@ from flask_app import app
 from flask import render_template,redirect,request,session,flash
 from flask_app.models.Book import Book
 from flask_app.models.Author import Author
+from flask_app.models.Favorite import Favorite
 
 @app.route("/books")
 def add_book():
@@ -14,7 +15,8 @@ def getBookInfo(id):
     data={'id':id}
     book_info = Book.getBook(data)
     author_info = Author.get_all()
-    return render_template("book_show.html", Book_Info = book_info, authors = author_info)
+    fav_authors = Favorite.get_fav_authors(data)
+    return render_template("book_show.html", Book_Info = book_info, authors = author_info, fav_authors = fav_authors)
 
 
 @app.route("/newBooks", methods=["POST"])

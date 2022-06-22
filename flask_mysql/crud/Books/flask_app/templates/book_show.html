@@ -17,8 +17,8 @@
                     Favorited By:
                 </div>
                 <div class="card-text p-4">
-                    {% for author in authors %}
-                        <p>{{author.name}}</p>
+                    {% for fav_author in fav_authors %}
+                        <p>{{fav_author.name}}</p>
                     {% endfor %}
                 </div>
             </div>
@@ -30,11 +30,12 @@
             <div class="card">
                 <h1 class="card-header">Add Book's Favorite</h1>
                 <div class="card-body">
-                    <form action='\newauthor' method='post'  class="mt-4">
+                    <form action='\newFavAuthor' method='post'  class="mt-4">
+                        <input type="hidden" name="book_id" value={{Book_Info.id}}>
                         <div class="mb-3 row">
                             <label class="col-sm-4 col-form-label">Author: </label>
                             <div class="col-sm">
-                                <select class="form-select"  name="author_id">
+                                <select class="form-select"  name="user_id">
                                     {% for author in authors %}
                                         <option value="{{author.id}}">{{author.name}}</option>
                                     {% endfor %}

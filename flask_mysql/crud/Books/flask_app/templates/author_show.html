@@ -21,10 +21,10 @@
                         </tr>
                     </thead>
                     <tbody>
-                        {% for book in books %}
+                        {% for fav_book in fav_books %}
                             <tr>
-                                <td scope="row">{{book.title}}</td>
-                                <td>{{book.num_of_pages}}</td>
+                                <td scope="row">{{fav_book.title}}</td>
+                                <td>{{fav_book.num_of_pages}}</td>
                             </tr>
                         {% endfor %}
                     </tbody>
@@ -38,7 +38,8 @@
             <div class="card">
                 <h1 class="card-header">Add Author's Favorite</h1>
                 <div class="card-body">
-                    <form action='\newauthor' method='post'  class="mt-4">
+                    <form action='\newFavBook' method='post'  class="mt-4">
+                        <input type="hidden" name="user_id" value={{Author_Info.id}}>
                         <div class="mb-3 row">
                             <label class="col-sm-3 col-form-label">Book: </label>
                             <div class="col-sm">

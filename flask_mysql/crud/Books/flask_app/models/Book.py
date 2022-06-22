@@ -24,9 +24,9 @@ class Book:
     def addNewBook(cls, data):
         query = "INSERT INTO books (title, num_of_pages) "
         query += "VALUES ( %(title)s,  %(num_of_pages)s );"
-        newNinjaID = connectToMySQL('books_schema').query_db(query, data)
+        lastInsertedRowID = connectToMySQL('books_schema').query_db(query, data)
         
-        return newNinjaID
+        return lastInsertedRowID
 
     @classmethod
     def getBook(cls, data):
