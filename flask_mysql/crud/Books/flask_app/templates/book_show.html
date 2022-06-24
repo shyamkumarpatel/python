@@ -10,7 +10,7 @@
 </head>
 <body>
     <div class="container d-flex mt-4">
-        <div class="card w-50 m-1">
+        <div class="card w-50 m-1 b-flex">
             <h1 class="card-header">Title: {{Book_Info.title}}</h1>
             <div class="card-body">
                 <div class="card-text">
@@ -21,6 +21,9 @@
                         <p>{{fav_author.name}}</p>
                     {% endfor %}
                 </div>
+            </div>
+            <div class="card-body">
+                <a href="/books" class="btn btn-lg btn-primary mt-4">Go back to home</a>
             </div>
             <div class="card-body">
                 <a href="/books" class="btn btn-lg btn-primary mt-4">Go back to home</a>
